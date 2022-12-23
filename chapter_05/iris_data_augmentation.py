@@ -6,7 +6,7 @@ def generateData(pca, x, start):
     ncomp = pca.components_.shape[0]
     a = pca.transform(x)
     for i in range(start, ncomp):
-        pca.components_[i,:] += np.random.normal(scale=0.1, size=ncomp)
+        pca.components_[i,:] += np.random.normal(scale=0.02, size=ncomp)
     b = pca.inverse_transform(a)
     pca.components_ = original.copy()
     return b
@@ -25,7 +25,7 @@ def main():
     pca.fit(x)
     print(pca.explained_variance_ratio_)
     start = 2
-    
+
     nsets = 10
     nsamp = x_train.shape[0]
     newx = np.zeros((nsets*nsamp, x_train.shape[1]))
